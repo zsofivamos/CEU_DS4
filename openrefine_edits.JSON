@@ -1,0 +1,140 @@
+[
+  {
+    "op": "core/mass-edit",
+    "engineConfig": {
+      "facets": [],
+      "mode": "row-based"
+    },
+    "columnName": "speaker",
+    "expression": "value",
+    "edits": [
+      {
+        "from": [
+          "MAN #5 :",
+          "MAN #5"
+        ],
+        "fromBlank": false,
+        "fromError": false,
+        "to": "MAN #5 :"
+      },
+      {
+        "from": [
+          "MORPHEUS",
+          "MORPHEUS ."
+        ],
+        "fromBlank": false,
+        "fromError": false,
+        "to": "MORPHEUS"
+      },
+      {
+        "from": [
+          "MAN",
+          "MAN #"
+        ],
+        "fromBlank": false,
+        "fromError": false,
+        "to": "MAN"
+      },
+      {
+        "from": [
+          "CYPHER",
+          "CYPHER,"
+        ],
+        "fromBlank": false,
+        "fromError": false,
+        "to": "CYPHER"
+      },
+      {
+        "from": [
+          "MAN #2",
+          "MAN 2"
+        ],
+        "fromBlank": false,
+        "fromError": false,
+        "to": "MAN #2"
+      }
+    ],
+    "description": "Mass edit cells in column speaker"
+  },
+  {
+    "op": "core/mass-edit",
+    "engineConfig": {
+      "facets": [],
+      "mode": "row-based"
+    },
+    "columnName": "speaker",
+    "expression": "value",
+    "edits": [
+      {
+        "from": [
+          "CABDRIVER",
+          "CAB DRIVER"
+        ],
+        "fromBlank": false,
+        "fromError": false,
+        "to": "CAB DRIVER"
+      }
+    ],
+    "description": "Mass edit cells in column speaker"
+  },
+  {
+    "op": "core/mass-edit",
+    "engineConfig": {
+      "facets": [],
+      "mode": "row-based"
+    },
+    "columnName": "speaker",
+    "expression": "value",
+    "edits": [
+      {
+        "from": [
+          "BUSINESS WOMAN",
+          "BUSISNESS WOMAN"
+        ],
+        "fromBlank": false,
+        "fromError": false,
+        "to": "BUSINESS WOMAN"
+      }
+    ],
+    "description": "Mass edit cells in column speaker"
+  },
+  {
+    "op": "core/mass-edit",
+    "engineConfig": {
+      "facets": [],
+      "mode": "row-based"
+    },
+    "columnName": "speaker",
+    "expression": "value",
+    "edits": [
+      {
+        "from": [
+          "AGENT BROWN",
+          "AGENT BROWTJ"
+        ],
+        "fromBlank": false,
+        "fromError": false,
+        "to": "AGENT BROWN"
+      },
+      {
+        "from": [
+          "DETECTIVE",
+          "A DETECTIVE"
+        ],
+        "fromBlank": false,
+        "fromError": false,
+        "to": "DETECTIVE"
+      },
+      {
+        "from": [
+          "REPORTER",
+          "A REPORTER"
+        ],
+        "fromBlank": false,
+        "fromError": false,
+        "to": "REPORTER"
+      }
+    ],
+    "description": "Mass edit cells in column speaker"
+  }
+]
