@@ -4,7 +4,7 @@ library(tidyverse)
 
 ### Gender
 
-## I'm going to utilize the Gender API to pull to query the name's gender
+## I'm going to utilize the Gender API to query the name's gender
 
 ## read in the refined version of the scripts
 scripts <- fread("./data/scripts_clean.csv")
@@ -30,7 +30,7 @@ ggplot(script_characters, aes(line_count)) +
 ## so that plot is not very meaningful in terms of figuring out the gender split in speech, but it does show that
 ## in all of our top movie scripts, a huge amount of unimportant characters speak little 
 ## and only a handful of important ones speak a normal amount 
-## the 80-20 rule strikes again ladies and gentleman
+## the 80-20 rule strikes again ladies and gentlemen
 
 str(script_characters %>% filter(line_count>15))
 
