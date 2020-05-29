@@ -1,12 +1,12 @@
 library(dplyr)
-library(data.table)
+library(tidyverse)
 library(stringr)
 library(ggplot2)
 
 
 ### Let's start validating the genders
 
-characters <- fread("./data/characters.csv")
+characters <- read_csv("./data/characters.csv")
 
 ## joining datasets tends to duplicate rows so let's take the unique values only
 characters <- unique(characters)
@@ -50,12 +50,6 @@ characters$gender <- ifelse(characters$speaker %in% c("ANGEL FACE", "BOB HOPE", 
 ## no doctor appears in the movie
 
 
-# characters$gender <- ifelse(characters$title == "The Shawshank Redemption" & (str_detect(characters$speaker, "\\bGUARD\\b")|
-#                                                                                 (str_detect(characters$speaker, "\\bPROJECTIONIST\\b")|
-#                                                                                    (str_detect(characters$speaker, "\\bMANAGER\\b")))), "male", 
-#                                                                                  ifelse(characters$title == "The Shawshank Redemption" & characters$gender == "unknown", "unclear",
-#                                                                                         characters$gender))
-
 characters$gender <- case_when(
   characters$title == "The Shawshank Redemption" & str_detect(characters$speaker, "\\bGUARD\\b|\\bPROJECTIONIST\\b|\\bMANAGER\\b") ~ "male",
   characters$title == "The Shawshank Redemption" & str_detect(characters$speaker, "\\bRORY\\b|\\bDOCTOR\\b|\\bCHAPLAIN\\b|\\bVOICE") ~ "unclear",
@@ -74,9 +68,6 @@ characters$gender <- case_when(
 ## the priest is male
 ## the only credited nurse is female
 
-# characters$gender <- ifelse(characters$title == "Godfather" & characters$speaker %in% c("BONASERA", "NAZORINE", "DRIVER", "PRIEST"), "male",
-#                             ifelse(characters$title == "Godfather" & characters$speaker %in% c("MRS. BONASERA", "NURSE"), "female", 
-#                                    ifelse(characters$title == "Godfather" & characters$gender == "unknown", "unclear", characters$gender)))
 
 characters$gender <- case_when(
   characters$title == "Godfather" & characters$speaker %in% c("BONASERA", "NAZORINE", "DRIVER", "PRIEST") ~ "male",
@@ -93,11 +84,6 @@ characters$gender <- case_when(
 ## the Waitress is a woman I assume
 ## Sportcasters appear to be male
 ## PEDESTRIAN is female
-
-# characters$gender <- ifelse(characters$title == "Pulp Fiction" & (str_detect(characters$speaker, "\\bGAWKER\\b") |
-#                                                                     str_detect(characters$speaker, "\\bWAITRESS\\b")), "female",
-#                             ifelse(characters$title == "Pulp Fiction" & str_detect(characters$speaker, "\\bSPORTCASTER\\b"), "male", 
-#                                    ifelse(characters$title == "Pulp Fiction" & characters$gender == "unknown", "unclear", characters$gender)))
 
 characters$gender <- case_when(
   characters$title == "Pulp Fiction" &str_detect(characters$speaker, "\\bGAWKER\\b|\\bWAITRESS\\b|\\bPEDESTRIAN\\b") ~ "female",
@@ -117,13 +103,6 @@ characters$gender <- case_when(
 ## the leader in the script is a woman according to the movie - she is the therapy group's leader
 ## MECHANIC is male
 ##
-
-# characters$gender <- ifelse(characters$title == "Fight Club" & str_detect(characters$speaker, ".SPACE MONKEY"), "male",
-#                                                                           ifelse(characters$title == "Fight Club" & 
-#                                                                                    characters$speaker %in% c("ATTENDANT",
-#                                                                                                              "REPORTER", "DESK CLERK", "LEADER"), 
-#                                                                                  "female",
-#                                                                                  ifelse(characters$title == "Fight Club" & characters$gender == "unknown", "unclear", characters$gender)))
 
 characters$gender <- case_when(
   characters$title == "Fight Club" & str_detect(characters$speaker, ".SPACE MONKEY|\\bMECHANIC\\b") ~ "male",
@@ -148,17 +127,6 @@ characters$gender <- case_when(
 ## MRS. BLUE & 	MRS. GUMP are female
 
 
-# characters$gender <- ifelse(characters$title == "Forrest Gump" & str_detect(characters$speaker, "\\bSOLDIER\\b"), "male",
-#                             ifelse(characters$title == "Forrest Gump" & str_detect(characters$speaker, "\\bOFFICER\\b"), "male",
-#                                    ifelse(characters$title == "Forrest Gump" & str_detect(characters$speaker, "\\bCOACH\\b"), "male",
-#                                           ifelse(characters$title == "Forrest Gump" & (str_detect(characters$speaker, "\\bPLAYER\\b") | 
-#                                                                                          str_detect(characters$speaker, "\\bDOCTOR\\b") | 
-#                                                                                          str_detect(characters$speaker, "\\bREPORTER\\b") |
-#                                                                                          str_detect(characters$speaker, "\\bPOLICEMAN\\b") | 
-#                                                                                          str_detect(characters$speaker, "\\bNEWSCASTER\\b") | 
-#                                                                                          str_detect(characters$speaker, "\\bPRINCIPAL\\b")), "male", 
-#                                                  ifelse(characters$title == "Forrest Gump" & characters$gender == "unknown", "unclear", characters$gender)))))
-
 characters$gender <- case_when(
   characters$title == "Forrest Gump" & 
     str_detect(characters$speaker, "\\bSOLDIER\\b|\\bOFFICER\\b|\\bCOACH\\b|\\bPLAYER\\b|\\bREPORTER\\b|\\bPOLICEMAN\\b|\\bNEWSCASTER\\b|\\bPRINCIPAL\\b") ~ "male",
@@ -176,9 +144,6 @@ characters$gender <- case_when(
 ## businessmen are male
 ## MAL is female
 ## flgith attendant is female
-
-# characters$gender <- ifelse(characters$title == "Inception" & characters$speaker %in% c("LAWYER", "BUSINESSMAN"), "male", 
-#                             ifelse(characters$title == "Inception" & characters$gender == "unknown", "unclear", characters$gender))
 
 characters$gender <- case_when(
   characters$title == "Inception" & str_detect(characters$speaker,"\\bLAWYER\\b|\\bBUSINESSMAN\\b") ~ "male",
@@ -200,9 +165,6 @@ characters$gender <- case_when(
 ## Switch is female
 ## the others are unknown
 
-# characters$gender <- ifelse(characters$title == "The Matrix" & characters$speaker %in% c("AGENT BROWN", "MOUSE"), "male", 
-#                             ifelse(characters$title == "The Matrix" & characters$speaker %in% c("DUJOUR", "SWITCH"), "female",
-#                                    ifelse(characters$title == "The Matrix" & characters$gender == "unknown", "unclear", characters$gender)))
 
 characters$gender <- case_when(
   characters$title == "The Matrix" & characters$speaker %in% c("AGENT BROWN", "MOUSE") ~ "male",
@@ -227,11 +189,6 @@ characters$gender <- case_when(
 ## BANCINI is male
 ## BIG NURSE is referring to Miss Ratched - female
 
-# characters$gender <- ifelse(characters$title == "One Flew Over the Cuckoo's Nest" & characters$speaker %in% c("DOCTOR", "RUCKLY", "CHESWICK", "CHESWTCK",
-#                                                                                                               "SCANLON", "SEFELT", "SPIVEY", "BANCINI"), "male",
-#                             ifelse(characters$title == "One Flew Over the Cuckoo's Nest" & characters$speaker %in% c("NURSE", "MISS PILBOW", "NURSE PILBOW"), "female",
-#                                    ifelse(characters$title == "One Flew Over the Cuckoo's Nest" & characters$gender == "unknown", "unclear", characters$gender)))
-# 
 
 characters$gender <- case_when(
   characters$title == "One Flew Over the Cuckoo's Nest" & characters$speaker %in% c("DOCTOR", "RUCKLY", "CHESWICK", "CHESWTCK",
@@ -258,10 +215,6 @@ characters$gender <- case_when(
 ## SKETCH ARTIST is female
 ## VAGRANT is female
 
-# characters$gender <- ifelse(characters$title == "Seven" & characters$speaker %in% c("OFFICER", "POLICEMAN"), "male",
-#                             ifelse(characters$title == "Seven" & characters$speaker == "REPORTER", "female", 
-#                                    ifelse(characters$title == "Seven" & characters$gender == "unknown", "unclear", characters$gender)))
-
 characters$gender <- case_when(
   characters$title == "Seven" & characters$speaker %in% c("OFFICER", "POLICEMAN") ~ "male",
   characters$title == "Seven" & characters$speaker %in% c("REPORTER", "SKETCH ARTIST", "VAGRANT") ~ "female",
@@ -287,10 +240,6 @@ characters$gender <- case_when(
 ## PETERSON isn't credited
 ## SEN. MARTIN is female
 
-# characters$gender <- ifelse(characters$title == "Silence of the Lambs" & characters$speaker %in% c("KRENDLER", "MR. BIMMEL", "ORDERLY", "PEMBRY",
-#                                                                                                    "PILCHER", "INSTRUCTOR", "ATTENDANT"), "male",
-#                             ifelse(characters$title == "Silence of the Lambs" & characters$gender == "unknown", "unclear", characters$gender))
-
 characters$gender <- case_when(
   characters$title == "Silence of the Lambs" & characters$speaker %in% c("KRENDLER", "MR. BIMMEL", "ORDERLY", "PEMBRY",
                                                                          "PILCHER", "INSTRUCTOR", "ATTENDANT", "BOYLE") ~ "male",
@@ -299,6 +248,8 @@ characters$gender <- case_when(
                                                                                                            "2ND TV ANCHOR", "DR. DANIELSON")) ~ "unclear",
   TRUE ~ characters$gender
 )
+
+##### ----------------------------------------------------------------------------------------------------------------------------
 
 ## check distribution now
 ggplot(characters, aes(reorder(gender, gender, function(x)-length(x)))) +
@@ -321,7 +272,7 @@ ggplot(characters %>% filter(line_count >15), aes(reorder(gender, gender, functi
 ## looks better but still pretty weird, I didn't really expect female presence to be this low
 
 ## let's join the genders back to the original data
-scripts <- fread("scripts_clean.csv")
+scripts <- read_csv("./data/scripts_clean.csv")
 scripts$speaker <- ifelse(scripts$speaker == "FRIEND #l", "FRIEND #1", scripts$speaker)
 
 df <- merge(scripts, characters, by = c("title", "speaker"), all.x = TRUE) %>% 
@@ -330,7 +281,7 @@ df <- merge(scripts, characters, by = c("title", "speaker"), all.x = TRUE) %>%
 
 df %>% filter(gender == "")
 
-fwrite(df, "./data/df.csv")
+write_csv(df, "./data/df.csv")
 
 
 
