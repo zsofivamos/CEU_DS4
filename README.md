@@ -11,18 +11,18 @@ I chose to work with movies from the ["Top Rated English Movies"](https://www.im
 * **Superhero and fantasy movies** have also been **excluded** on the grounds that determining gender of important charactrs could be very difficult. I don't know how to classify fairies, space racoons or trees, so I decided it's better to leave those alone and focus on regular human characters.
 
 **The winners were:**
-1.)	The Shawshank Redemption 
-2.) Godfather
-3.) Pulp Fiction
-4.) Fight Club
-5.) Forrest Gump
-6.) Inception
-7.) The Matrix[\*]
-8.) One Flew Over the Cuckoo's Nest
-9.) Seven
-10.) Silence of the Lambs
+1.	The Shawshank Redemption 
+2. Godfather
+3. Pulp Fiction
+4. Fight Club
+5. Forrest Gump
+6. Inception
+7. The Matrix[+]
+8. One Flew Over the Cuckoo's Nest
+9. Seven
+10. Silence of the Lambs
 
-[\*]I am aware that The Matrix is borderline fantasy but I chose to keep it due to its deep metaphorical relationship with the real world. And the epic limbo moves.
+[+]I am aware that The Matrix is borderline fantasy but I chose to keep it due to its deep metaphorical relationship with the real world. And the epic limbo moves.
 
 
 
