@@ -17,12 +17,12 @@ I chose to work with movies from the ["Top Rated English Movies"](https://www.im
 4. Fight Club
 5. Forrest Gump
 6. Inception
-7. The Matrix<sup>1</sup>
+7. The Matrix<sup>\*</sup>
 8. One Flew Over the Cuckoo's Nest
 9. Seven
 10. Silence of the Lambs
 
-<sup>1</sup>I am aware that The Matrix is borderline fantasy but I chose to keep it due to its deep metaphorical relationship with the real world. And the epic limbo moves.
+<sup>\*:I am aware that The Matrix is borderline fantasy but I chose to keep it due to its deep metaphorical relationship with the real world. And the epic limbo moves.</sup>
 
 
 
