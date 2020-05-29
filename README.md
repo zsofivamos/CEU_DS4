@@ -39,7 +39,7 @@ I'm not going to lie, this one gave me a hard time - I had to classify more than
 
 Finally, I did all the text analysis using **dplyr** and **tidytext** with some help from **ggplot2** in terms of visualizations. 
 
-I posted a summary of the analysis [here]().
+I posted a summary of the analysis [here](https://medium.com/@zsofivamos/analyzing-gender-representation-on-screen-using-tidytext-6de92c10ac2).
 
 
 
