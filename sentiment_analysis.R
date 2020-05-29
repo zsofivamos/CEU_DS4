@@ -17,27 +17,32 @@ df <- read_csv("./data/df.csv") %>%
 sentiment_df <- df %>% 
   group_by(gender) %>% 
   count(word, sort = TRUE) %>% 
-  inner_join(sentiments_nrc) 
+  inner_join(sentiments_nrc) %>% 
+  ungroup()
 
 table(sentiment_df$gender)
 ## compared to the original proportion women managed to get a bit more representation here
 
 ## For the first part I will not need the actual words themselves so let's group 
 ## the data and count sentiments
-sentiment_plot <- sentiment_df %>% group_by(gender) %>% 
+sentiment_plot <- sentiment_df %>% 
+  group_by(gender) %>% 
   count(sentiment, sort = TRUE) %>% 
-  ggplot(aes(reorder(sentiment, n, sum), n, fill = gender))+
+  mutate(total_words = sum(n),
+         frequency = n/total_words) %>%
+  ggplot(aes(reorder(sentiment, frequency), frequency, fill = gender))+
   geom_bar(position = "dodge", stat = "identity") +
   coord_flip() +
-  labs(title = "Word Sentiments",subtitle = "per the NRC Lexicon", x = "", y="") +
+  labs(title = "Frequency of sentiments",subtitle = "per the NRC Lexicon", x = "", y="Frequency") +
   theme_bw() +
   theme(axis.ticks.y = element_blank(),
-        axis.text.y = element_text(size = 11),
+        axis.text.y = element_text(color = "#615e59",size = 10),
         legend.title = element_blank(),
+        axis.title.y = element_text(size = "9", color ="#615e59"),
         legend.text = element_text(size = 11),
         legend.position = "bottom",
-        plot.title = element_text(color = "#615e59", size = 16, hjust = 0.0475),
-        plot.subtitle = element_text(color = "#615e59",size = 8, hjust = 0.047))
+        plot.title = element_text(color = "#615e59", size = 16, hjust = 0),
+        plot.subtitle = element_text(color = "#615e59",size = 8, hjust = 0))
 
 ggsave("sentiment_plot.PNG", sentiment_plot)
 
@@ -45,4 +50,45 @@ ggsave("sentiment_plot.PNG", sentiment_plot)
 ## except for one area - for female characters anticipation seems to outdo anger and sadness with a very tiny difference
 ## the overall moral of the story is that most characters tend to use less surprised words in our population
 
-## let's dig in and see the most common negative words
+## FEMALE
+female_positives <- sentiment_df %>%
+  filter(gender == "female") %>% 
+  filter(sentiment == "positive") %>% 
+  mutate(ranking = row_number()) %>% 
+  filter(ranking <= 10)
+  
+
+positive_fm <- ggplot(female_positives, aes(reorder(word,n), n)) + 
+  geom_col(fill = "#F8766D") +
+  coord_flip() +
+  labs(title = "Positive words", x = "", y = "") +
+  theme_bw() +
+  theme(axis.ticks.y = element_blank(),
+        axis.text.y = element_text(size = 11),
+        axis.text.x = element_text(colour = "#615e59"),
+        plot.title = element_text(colour = "#615e59", size = 16, hjust = 0),
+        plot.subtitle = element_text(colour = "#615e59", size = 8, hjust = 0))
+
+ggsave("positive_fm.PNG", positive_fm)
+
+## MALE
+
+male_positives <- sentiment_df %>%
+  filter(gender == "male") %>% 
+  filter(sentiment == "positive") %>% 
+  mutate(ranking = row_number()) %>% 
+  filter(ranking <= 10)
+
+
+positive_m <- ggplot(male_positives, aes(reorder(word,n), n)) + 
+  geom_col(fill = "#00BFC4") +
+  coord_flip() +
+  labs(title = "Positive words", x = "", y = "") +
+  theme_bw() +
+  theme(axis.ticks.y = element_blank(),
+        axis.text.y = element_text(size = 11),
+        axis.text.x = element_text(colour = "#615e59"),
+        plot.title = element_text(colour = "#615e59", size = 16, hjust = 0),
+        plot.subtitle = element_text(colour = "#615e59", size = 8, hjust = 0))
+
+ggsave("positive_m.PNG", positive_m)
