@@ -1,4 +1,4 @@
-## CEU_DS4
+## Text analysis of female vs male words in movies
 
 This repo contains all the codes used for my NLP assignment at Central European University. The main goal of the project was to explore whether female characters use a more one dimensional set of words in popular movies compared to their male counterparts. 
 
